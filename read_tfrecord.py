@@ -27,10 +27,10 @@ def get_batch(tfrecord_path, batch_size, num_epochs=100):
     dataset = tf.data.TFRecordDataset([tfrecord_path])
     dataset = dataset.map(_parse_fn)
     dataset = dataset.shuffle(2000)
+    dataset = dataset.batch(batch_size)
     epoch = tf.data.Dataset.range(num_epochs)
     dataset = epoch.flat_map(lambda i: tf.data.Dataset.zip((dataset, tf.data.Dataset.from_tensors(i).repeat())))
     dataset = dataset.repeat(num_epochs)
-    dataset = dataset.batch(batch_size)
 
     iterator = dataset.make_one_shot_iterator()
     (image), epoch = iterator.get_next()
