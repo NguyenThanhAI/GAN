@@ -4,7 +4,7 @@ from tensorflow.contrib import slim
 from ops import fully_connected, conv, deconv
 
 
-def generator(inputs, dropout_rate=None, activation_fn=tf.nn.leaky_relu, normalizer_fn=slim.batch_norm,
+def generator(inputs, dropout_rate=None, activation_fn=tf.nn.leaky_relu, normalizer_fn=None,
               is_training=True, reuse=None, scope=None):
     with tf.variable_scope(scope, "generator", [inputs], reuse=reuse) as sc:
         end_points_collection = sc.name + "_end_points"
