@@ -32,7 +32,7 @@ def get_args():
     parser.add_argument("--weight_decay", type=float, default=1e-4)
     parser.add_argument("--lambda_a", type=float, default=10.)
     parser.add_argument("--n_critic", type=int, default=5)
-    parser.add_argument("--learning_rate", type=int, default=1e-4)
+    parser.add_argument("--learning_rate", type=float, default=1e-4)
     parser.add_argument("--learning_rate_decay_type", type=str, default="constant")
     parser.add_argument("--decay_steps", type=int, default=10000)
     parser.add_argument("--decay_rate", type=float, default=0.9)
