@@ -198,17 +198,17 @@ class WGANGP(object):
     def generate_noise(self):
         if self.config.is_training:
             if self.config.noise_type == "unsigned_uniform":
-                noise_z = tf.random.uniform(shape=[self.config.batch_size, self.config.z_dim],
+                noise_z = tf.random.uniform(shape=[tf.shape(self.real_images)[0], self.config.z_dim],
                                                  minval=0.,
                                                  maxval=1.,
                                                  name="noise_z")
             elif self.config.noise_type == "signed_uniform":
-                noise_z = tf.random.uniform(shape=[self.config.batch_size, self.config.z_dim],
+                noise_z = tf.random.uniform(shape=[tf.shape(self.real_images)[0], self.config.z_dim],
                                                  minval=-1.,
                                                  maxval=1.,
                                                  name="noise_z")
             elif self.config.noise_type == "normal":
-                noise_z = tf.random.normal(shape=[self.config.batch_size, self.config.z_dim],
+                noise_z = tf.random.normal(shape=[tf.shape(self.real_images)[0], self.config.z_dim],
                                                 mean=0.0,
                                                 stddev=1.0,
                                                 name="noise_z")
