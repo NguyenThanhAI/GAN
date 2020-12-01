@@ -259,7 +259,7 @@ class WGANGP(object):
         summary = self.sess.run(self.merged)
 
         self.writer.add_summary(summary=summary, global_step=step)
-        self.writer.flush()
+        #self.writer.flush()
 
         print("Add summary at {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S")))
 
@@ -282,5 +282,6 @@ class WGANGP(object):
                 print("Step: {}, generator loss: {}, takes time: {}".format(step, round(gen_cost, ndigits=3), round(end - start, ndigits=3)))
         except tf.errors.OutOfRangeError:
             self.save_networks(step=step)
+            self.writer.close()
             print("Training process finished")
             pass
