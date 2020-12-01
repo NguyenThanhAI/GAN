@@ -1,6 +1,6 @@
 import numpy as np
 
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 from tensorflow.contrib import slim
 
 from models import generator_arg_scope, generator, discriminator_arg_scope, discriminator

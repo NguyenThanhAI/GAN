@@ -2,7 +2,7 @@ import os
 from datetime import datetime
 import time
 
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 from tensorflow.python import debug as tf_debug
 from tensorflow.contrib import slim
 
@@ -98,7 +98,7 @@ class WGANGP(object):
             self.discriminator_loss = tf.reduce_mean(self.fake_logits) - tf.reduce_mean(self.real_logits)
             tf.summary.scalar("loss", self.discriminator_loss)
 
-            self.epsilon = tf.random.uniform(shape=[self.config.batch_size, 1, 1, 1], minval=0., maxval=1.)
+            self.epsilon = tf.random.uniform(shape=[tf.shape(self.real_images)[0], 1, 1, 1], minval=0., maxval=1.)
             self.interpolates = self.epsilon * self.real_images + (1. - self.epsilon) * self.fake_images
             self.interpolates_logits, _ = discriminator(inputs=self.interpolates, dropout_rate=self.config.dropout_rate,
                                                         is_training=self.config.is_training,
