@@ -18,17 +18,19 @@ def generator(inputs, dropout_rate=None, activation_fn=tf.nn.relu, normalizer_fn
 
             net = inputs
 
-            net = fully_connected(inputs=net, num_outputs=4 * 4 * 512, scope="fully_connected_1")
+            net = fully_connected(inputs=net, num_outputs=2 * 2 * 1024, scope="fully_connected_1")
 
-            net = tf.reshape(net, shape=[-1, 4, 4, 512], name="reshape")
+            net = tf.reshape(net, shape=[-1, 2, 2, 1024], name="reshape")
 
-            net = deconv(inputs=net, num_filters=256, kernel_size=5, stride=2, scope="deconv_1")
+            net = deconv(inputs=net, num_filters=512, kernel_size=5, stride=2, scope="deconv_1")
 
-            net = deconv(inputs=net, num_filters=128, kernel_size=5, stride=2, scope="deconv_2")
+            net = deconv(inputs=net, num_filters=256, kernel_size=5, stride=2, scope="deconv_2")
 
-            net = deconv(inputs=net, num_filters=64, kernel_size=5, stride=2, scope="deconv_3")
+            net = deconv(inputs=net, num_filters=128, kernel_size=5, stride=2, scope="deconv_3")
 
-            net = deconv(inputs=net, num_filters=3, kernel_size=5, stride=2, scope="deconv_4",
+            net = deconv(inputs=net, num_filters=64, kernel_size=5, stride=2, scope="deconv_4")
+
+            net = deconv(inputs=net, num_filters=3, kernel_size=5, stride=2, scope="deconv_5",
                          normalizer_fn=None, activation_fn=tf.nn.tanh)
 
             end_points = slim.utils.convert_collection_to_dict(end_points_collection)
