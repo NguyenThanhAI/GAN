@@ -259,7 +259,7 @@ class WGANGP(object):
         summary = self.sess.run(self.merged)
 
         self.writer.add_summary(summary=summary, global_step=step)
-        #self.writer.flush()
+        self.writer.flush()
 
         print("Add summary at {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S")))
 
