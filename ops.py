@@ -4,9 +4,12 @@ from tensorflow.contrib import slim
 
 @slim.add_arg_scope
 def fully_connected(inputs, num_outputs, dropout_rate=None, scope=None,
-                    outputs_collections=None, activation_fn=tf.nn.relu):
+                    outputs_collections=None, activation_fn=tf.nn.relu,
+                    normalizer_fn=None):
     with tf.variable_scope(scope, "fully_connected", [inputs]) as sc:
         net = slim.fully_connected(inputs=inputs, num_outputs=num_outputs)
+        if normalizer_fn is not None:
+            net = normalizer_fn(net)
 
         if activation_fn is not None:
             net = activation_fn(net)
