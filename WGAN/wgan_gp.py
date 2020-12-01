@@ -159,7 +159,7 @@ class WGANGP(object):
                                                                           momentum=self.config.momentum)
             elif self.config.optimizer.lower() == "grad_descent":
                 self.generator_optimizer = tf.train.GradientDescentOptimizer(learning_rate=self.learning_rate)
-                self.discriminator_optimizer = tf.train.GradientDescentOptimizer(learning_rate=self.learning_rate)
+                self.discriminator_optimizer = tf.train.GradientDescentOptimizer(learning_rate=5 * self.learning_rate)
             else:
                 raise ValueError("Optimizer {} was not recognized".format(self.config.optimizer))
 
