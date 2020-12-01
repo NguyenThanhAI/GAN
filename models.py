@@ -56,7 +56,7 @@ def generator_arg_scope(weight_decay=1e-4, batch_norm_decay=0.99, batch_norm_eps
                     return scope
 
 
-def discriminator(inputs, dropout_rate=None, activation_fn=tf.nn.leaky_relu, normalizer_fn=slim.layer_norm,
+def discriminator(inputs, dropout_rate=None, activation_fn=tf.nn.leaky_relu, normalizer_fn=None,
                   is_training=True, reuse=None, scope=None):
     with tf.variable_scope(scope, "discriminator", [inputs], reuse=reuse) as sc:
         end_points_collection = sc.name + "_end_points"
