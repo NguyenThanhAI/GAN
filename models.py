@@ -81,7 +81,7 @@ def discriminator(inputs, dropout_rate=None, activation_fn=tf.nn.leaky_relu, nor
             net = slim.flatten(net)
 
             net = fully_connected(inputs=net, num_outputs=1, scope="fully_connected_1", activation_fn=None,
-                                  normalizer_fn=None)
+                                  normalizer_fn=tf.nn.softmax)
 
             end_points = slim.utils.convert_collection_to_dict(end_points_collection)
 
